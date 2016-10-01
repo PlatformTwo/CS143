@@ -11,7 +11,7 @@ Type an expression in the following box (e.g., 10.5+20*3/25). <br><br><input typ
 
 <?php $query = $_GET["query"];
 
-if($query==0 || $query =="")
+if(empty($query))
 {
 return;
 }
