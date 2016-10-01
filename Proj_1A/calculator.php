@@ -11,18 +11,28 @@ Type an expression in the following box (e.g., 10.5+20*3/25). <br><br><input typ
 
 <?php $query = $_GET["query"];
 
+if($query==0 || $query =="")
+{
+return;
+}
+
+$searchpattern = "/^\-?(([1-9][0-9]*(.[0-9]+)?)|(0.[0-9]+))([\+\-\*\/]\-?(([1-9][0-9]*(.[0-9]+)?)|(0.[0-9]+)))*/";
 
 
-$searchpattern = "/^[0-9]+([\+\-\*\/][0-9]+)*$/";
 
 if (preg_match($searchpattern, $query)) {$result = eval("return $query;");}
 else {$result = "Invalid Expression!";}
 
-if($query!="")
-{
+
 Print "<br><strong>Result</strong><br><br>";
-echo $result;
+
+if($result!="Invalid Expression!") {
+echo $query;
+echo "=";
 }
+
+echo $result;
+
 
 ?>
 
