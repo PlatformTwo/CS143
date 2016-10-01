@@ -5,19 +5,27 @@
 <h1> Calculator </h1>
 
 <form method="get">
-What do you want to calculate?: <input type="text" name="query"><br>
+Type an expression in the following box (e.g., 10.5+20*3/25). <br><br><input type="text" name="query">
 <input type= "submit" value="Calculate"><br>
 </form>
 
-<?php $query = $_GET["query"]; ?>
-
-Your query is:<?php echo $query; ?><br>
-
-<?php $result = eval("return $query;"); ?>
+<?php $query = $_GET["query"];
 
 
 
-Result is:<?php echo $result; ?>
+$searchpattern = "/^[0-9]+([\+\-\*\/][0-9]+)*$/";
+
+if (preg_match($searchpattern, $query)) {$result = eval("return $query;");}
+else {$result = "Invalid Expression!";}
+
+if($query!="")
+{
+Print "<br><strong>Result</strong><br><br>";
+echo $result;
+}
+
+?>
+
 
 
 </body>
