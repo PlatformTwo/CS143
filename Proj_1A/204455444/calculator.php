@@ -32,7 +32,7 @@ else {$result = "Invalid Expression!";}
 
 Print "<br><strong>Result</strong><br><br>";
 
-if($result!="Invalid Expression!") {
+if($result!="Invalid Expression!"||$result==0) {
 echo $query;
 echo " = ";
 }

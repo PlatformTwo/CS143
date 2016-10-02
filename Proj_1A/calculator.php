@@ -16,7 +16,13 @@ if(empty($query))
 return;
 }
 
-$searchpattern = "/^\-?(([1-9][0-9]*(.[0-9]+)?)|(0.[0-9]+))([\+\-\*\/]\-?(([1-9][0-9]*(.[0-9]+)?)|(0.[0-9]+)))*/";
+$query=preg_replace("/ +/", " ", $query);
+$query=preg_replace("/\-\-/","- -", $query);
+$query=preg_replace("/^ +/","", $query);
+$query=preg_replace("/ +$/","", $query);
+
+
+$searchpattern = "/^\-?(([1-9][0-9]*(.[0-9]+)?)|(0.[0-9]+))( *[\+\-\*\/] *\-?(([1-9][0-9]*(.[0-9]+)?)|(0.[0-9]+)))*/";
 
 
 
@@ -26,9 +32,9 @@ else {$result = "Invalid Expression!";}
 
 Print "<br><strong>Result</strong><br><br>";
 
-if($result!="Invalid Expression!") {
+if($result!="Invalid Expression!"||$result==0) {
 echo $query;
-echo "=";
+echo " = ";
 }
 
 echo $result;
